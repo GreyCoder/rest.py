@@ -21,6 +21,40 @@ This project will be a simple tool for building RESTful web services. It will
 not include any tools other than those required to make accepting a request and
 outputting a response fast, simple, and reliable.
 
+This project will make use of the
+`Werkzeug library <https://github.com/mitsuhiko/werkzeug>`_ for WSGI
+abstraction. In fact, this project is more a wrapper around basic werkzeug
+functionality than it is a development framework.
+
+Usage
+=====
+
+::
+
+    import rest
+
+    urls = {
+        '/': 'HelloWorld',
+        '/<string:name>': 'HelloName'
+    }
+
+    application = rest.Application(urls, globals())
+
+
+    class HelloWorld(object):
+
+        def GET(self, request):
+            return rest.ok('Hello World!')
+
+
+    class HelloName(object):
+
+        def GET(self, request, name):
+            return rest.ok('Hello ' + name + '!')
+
+    if __name__ == '__main__':
+        application.run()
+
 Standards
 =========
 

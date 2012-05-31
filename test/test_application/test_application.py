@@ -21,7 +21,7 @@ class IndexWithParam(object):
         return rest.response.ok(test)
 
     def POST(self, request, test):
-        return rest.response.created(request.data)
+        return rest.response.created(request.body)
 
 
 class TestRestApplication(unittest.TestCase):

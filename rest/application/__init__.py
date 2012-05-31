@@ -124,4 +124,4 @@ class Application(object):
         8080.
         """
 
-        run_simple('localhost', port, self)
+        run_simple('localhost', port, self, use_reloader=True)

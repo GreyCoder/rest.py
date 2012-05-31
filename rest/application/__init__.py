@@ -51,6 +51,12 @@ class Application(object):
         env = env.get_environ()
 
         request = werk.Request(env)
+        try:
+            content_length = int(request.environ['CONTENT_LENGTH'])
+            request.body = request.environ['wsgi.input'].read(content_length)
+        except:
+            request.body = None
+
         urls = self.urls.bind_to_environ(env)
         try:
             endpoint, args = urls.match()
@@ -83,6 +89,11 @@ class Application(object):
         """
 
         request = werk.Request(environ)
+        try:
+            content_length = int(request.environ['CONTENT_LENGTH'])
+            request.body = request.environ['wsgi.input'].read(content_length)
+        except:
+            request.body = None
 
         urls = self.urls.bind_to_environ(environ)
         try:

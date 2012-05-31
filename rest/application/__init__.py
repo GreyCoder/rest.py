@@ -54,6 +54,7 @@ class Application(object):
         try:
             content_length = int(request.environ['CONTENT_LENGTH'])
             request.body = request.environ['wsgi.input'].read(content_length)
+            assert request.body != ''
         except:
             request.body = None
 
@@ -92,6 +93,7 @@ class Application(object):
         try:
             content_length = int(request.environ['CONTENT_LENGTH'])
             request.body = request.environ['wsgi.input'].read(content_length)
+            assert request.body != ''
         except:
             request.body = None
 

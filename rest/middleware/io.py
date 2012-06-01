@@ -9,8 +9,15 @@ def json(f):
     def json_serialize(obj):
 
         def default(o):
+
             if isinstance(o, datetime.datetime):
                 return str(o.strftime('%Y-%m-%d %H:%M:%S'))
+
+            if isinstance(o, datetime.date):
+                return str(o.strftime('%Y-%m-%d'))
+
+            if isinstance(o, datetime.time):
+                return str(o.strftime('%H:%M:%S'))
 
         return jslib.dumps(obj, default=default)
 
